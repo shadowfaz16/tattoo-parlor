@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom"
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom"
 import { logo } from "./assets"
 
 import { Home, CreatePost } from "./pages"
@@ -7,7 +7,7 @@ import { Home, CreatePost } from "./pages"
 const App = () => {
 
   return (
-    <BrowserRouter>
+    <Router>
     <header className="w-full flex justify-between items-center bg-white sm:px-16 px-4 py-4 border-b border-b-gray-300">
       <Link to="/">
         <img src={logo} alt="logo" className="w-52 md:w-80 object-contain" />
@@ -22,7 +22,7 @@ const App = () => {
           <Route path="/create-tattoo" element={<CreatePost />} />
         </Routes>
       </main>
-    </BrowserRouter>
+    </Router>
   )
 }
 
