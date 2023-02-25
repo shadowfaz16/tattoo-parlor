@@ -117,7 +117,7 @@ const CreatePost = () => {
           </button>
         </div>
         <div className='mt-10'> 
-          <p className='mt-2 text-[#666e75] text-[14px]'>Once you have creaetd the image you want, you can share it with others in the Tattoo Parlor.</p>
+          <p className='mt-2 text-[#666e75] text-[14px]'>Once you have created a tattoo you like, you can share it with others in the Tattoo Parlor.</p>
           <button type='submit' className='mt-3 text-white bg-blue-400 font-medium text-sm rounded-md w-full sm:w-auto px-5 py-2.5 text-center'>
             {loading ? 
               'Sharing...' : 'Add to Parlor'
