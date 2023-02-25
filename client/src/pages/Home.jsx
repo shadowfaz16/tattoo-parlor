@@ -63,7 +63,7 @@ const Home = () => {
       <div>
         <h1 className='font-extrabold text-[#222328] text-[32px]'>The Community Showcase</h1>
         <p className='mt-2 text-[#666e75] text-[16px] max-w-[500px]'>
-          Browse through a collection of imaginative and visually stunning tattoos generated at The VTP!
+          Browse through a collection of imaginative and visually stunning tattoos generated at The Virtual Tatoo Parlor!
         </p>
       </div>
 
