@@ -1,6 +1,8 @@
 import React from "react"
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom"
+import { Analytics } from '@vercel/analytics/react';
 import { logo } from "./assets"
+
 
 import { Home, CreatePost } from "./pages"
 
@@ -22,6 +24,7 @@ const App = () => {
           <Route path="/create-tattoo" element={<CreatePost />} />
         </Routes>
       </main>
+      <Analytics />
     </Router>
   )
 }
