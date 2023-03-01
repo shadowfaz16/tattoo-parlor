@@ -7,7 +7,11 @@ import {FormField, Loader} from '../components'
 
 import {motion} from 'framer-motion'
 
+
 const CreatePost = () => {
+  const easing = [0.6, -0.05, 0.01, 0.99];
+
+
   const navigate = useNavigate();
   const [form, setForm] = useState({
     name: '',
@@ -76,20 +80,50 @@ const CreatePost = () => {
     }
   }
 
+  const fadeInUp = {
+    initial: {
+      opacity: 0,
+      y: 60,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: 'easeInOut',
+      },
+    },
+  }
+
+  const stagger = {
+    animate: {
+      transition: {
+        staggerChildren: .3,
+      },
+    },
+  }
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial='initial'
+      animate='animate'
       exit={{ opacity: 0 }}
      className='max-w-7xl mx-auto'>
-      <div>
+      <motion.div
+        variants={stagger}
+      >
+        <motion.div variants={fadeInUp}>
         <h1 className='font-extrabold text-[#222328] text-[32px]'>Create</h1>
-        <p className='mt-2 text-[#666e75] text-[16px] '>
-          Create imaginative and visually stunning tattoos at The Virtual Tattoo Parlor! <p className='text-xs'>Powered by DALL-E</p>
+        </motion.div>
+        <motion.div variants={fadeInUp}>
+        <p className='mt-2 text-[#666e75] text-[16px]'>
+          Create imaginative and visually stunning tattoos at The Virtual Tattoo Parlor! <br /><span className='text-xs'>Powered by DALL-E</span>
         </p>
-      </div>
+        </motion.div>
       <form action="" className='mt-16 max-w-3xl' onSubmit={handleSubmit}>
-        <div className='flex flex-col gap-5'>
+        <div className='flex flex-col gap-5'
+          >
+            <motion.div variants={fadeInUp}>
           <FormField
             LabelName='Name'
             type='text'
@@ -98,6 +132,8 @@ const CreatePost = () => {
             value={form.name}
             handleChange={handleChange}
             />
+            </motion.div>
+          <motion.div variants={fadeInUp}>
           <FormField
             LabelName='Prompt'
             type='text'
@@ -108,29 +144,32 @@ const CreatePost = () => {
             handleSurpriseMe={handleSurpriseMe}
             isSurpriseMe
           />
-          <div className='relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 w-64 p-3 h-64 flex justify-center items-center'>
+          </motion.div>
+          <motion.div variants={fadeInUp}
+           className='relative bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-emerald-400 focus:border-emerald-400 w-64 p-3 h-64 flex justify-center items-center'>
             {form.photo ? (<img src={form.photo} alt={form.prompt} className='w-full h-full object-contain' />) : (<img src={preview} alt='preview' className='w-9/12 h-9/12 object-contain opacity-40' />)}
             {generatingImg && (
               <div className='absolute inset-0 z-0 w-full h-full bg-black bg-opacity-40 flex justify-center items-center rounded-lg'>
                 <Loader />
               </div>
             )}
-          </div>
+          </motion.div>
         </div>
-        <div className='mt-5 flex gap-5'>
+        <motion.div variants={fadeInUp} className='mt-5 flex gap-5'>
           <button type='button' onClick={generateImage} className='bg-emerald-400 text-white text-sm font-medium rounded-lg w-full sm:w-auto px-5 py-2.5'>
             {generatingImg ? 'Generating Image' : 'Generate Image'}
           </button>
-        </div>
-        <div className='mt-10'> 
+        </motion.div>
+        <motion.div variants={fadeInUp} className='mt-10'> 
           <p className='mt-2 text-[#666e75] text-[14px]'>Once you have created a tattoo you like, you can share it with others in the Tattoo Parlor.</p>
           <button type='submit' className='mt-3 text-white bg-blue-400 font-medium text-sm rounded-md w-full sm:w-auto px-5 py-2.5 text-center'>
             {loading ? 
               'Sharing...' : 'Add to Parlor'
             }
           </button>
-        </div>
+        </motion.div>
       </form>
+      </motion.div>
 
     </motion.div>
   )

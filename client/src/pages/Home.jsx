@@ -5,7 +5,9 @@ import { motion } from 'framer-motion'
 
 const RenderCards = ({data, title}) => {
   if (data?.length > 0) {
-    return data.map((post) => <Card key={post._id} {...post} />)
+    return data.map((post, i) => 
+      <Card key={post._id} {...post} id={i} />
+    )
   }
   return (
     <h2 className='mt-5 font-bold text-emerald-500 uppercase'>{title}</h2>
@@ -60,20 +62,46 @@ const Home = () => {
     setSearchText(e.target.value);
   };
 
+const fadeInUp = {
+    initial: {
+      opacity: 0,
+      y: 60,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: 'easeInOut',
+      },
+    },
+  }
+
+  const stagger = {
+    animate: {
+      transition: {
+        staggerChildren: .3,
+      },
+    },
+  }
+
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      animate={{ opacity: 1, transition: { duration: 0.6 } }}
       exit={{ opacity: 0 }}
     className='max-w-7xl mx-auto'>
-      <div>
+        <motion.div variants={stagger}>
+        <motion.div variants={fadeInUp}>
         <h1 className='font-extrabold text-[#222328] text-[32px]'>The Community Showcase</h1>
+        </motion.div>
+        <motion.div variants={fadeInUp}>
         <p className='mt-2 text-[#666e75] text-[16px] max-w-[500px]'>
           Browse through a collection of imaginative and visually stunning tattoos generated at The Virtual Tatoo Parlor!
         </p>
-      </div>
-
-      <div className='mt-16'>
+        </motion.div>
+      <motion.div variants={fadeInUp} className='mt-16'>
         <FormField
         LabelName='Search tattoos, artists, etc...'
         type='text'
@@ -82,9 +110,10 @@ const Home = () => {
         value={searchText}
         handleChange={handleSearchChange}
          />
-      </div>
+      </motion.div>
+      </motion.div>
 
-      <div className='mt-10'>
+      <motion.div className='mt-10'>
         {loading ? (
           <div className='flex justify-center items-center'>
             <Loader />
@@ -102,7 +131,7 @@ const Home = () => {
             </div>
             </>
           )}
-      </div>
+      </motion.div>
     </motion.div>
   )
 }
