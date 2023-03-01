@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Loader, Card, FormField} from '../components'
+import { motion } from 'framer-motion'
+
 
 const RenderCards = ({data, title}) => {
   if (data?.length > 0) {
@@ -59,7 +61,11 @@ const Home = () => {
   };
 
   return (
-    <section className='max-w-7xl mx-auto'>
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    className='max-w-7xl mx-auto'>
       <div>
         <h1 className='font-extrabold text-[#222328] text-[32px]'>The Community Showcase</h1>
         <p className='mt-2 text-[#666e75] text-[16px] max-w-[500px]'>
@@ -97,7 +103,7 @@ const Home = () => {
             </>
           )}
       </div>
-    </section>
+    </motion.div>
   )
 }
 

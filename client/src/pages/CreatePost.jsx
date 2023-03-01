@@ -5,6 +5,8 @@ import {preview} from '../assets'
 import {getRandomPrompt} from '../utils'
 import {FormField, Loader} from '../components'
 
+import {motion} from 'framer-motion'
+
 const CreatePost = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -75,7 +77,11 @@ const CreatePost = () => {
   }
 
   return (
-    <section className='max-w-7xl mx-auto'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+     className='max-w-7xl mx-auto'>
       <div>
         <h1 className='font-extrabold text-[#222328] text-[32px]'>Create</h1>
         <p className='mt-2 text-[#666e75] text-[16px] '>
@@ -126,7 +132,7 @@ const CreatePost = () => {
         </div>
       </form>
 
-    </section>
+    </motion.div>
   )
 }
 
